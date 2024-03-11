@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import styles from './popularjobs.style'
 import {COLORS, SIZES} from "../../../constants";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
-import useFetch from "../../../hook/useFetch";
+import {useFetch} from "../../../hook/useFetch";
 
 
 const Popularjobs = () => {
@@ -12,12 +12,11 @@ const Popularjobs = () => {
   // const Loading = false;
   // const error = false;
 
-  const { data, loading, error } = useFetch("search", {
+  const { data, loading, error, reFetch } = useFetch("search", {
     query: "Python developer in Texas, USA",
-    num_pages: "1",
-    page: "1"
+    num_pages: 1,
   });
-  console.log("this is data coming from ", data);
+  console.log("this is data coming from apicls ", reFetch);
   
   const [selectedjob, setSelectedJob] = useState();
 
@@ -26,8 +25,6 @@ const Popularjobs = () => {
     setSelectedJob(item.job_id);
 
   }
-
- 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
